@@ -1,7 +1,9 @@
 const express = require("express"); // npm install express
 const path = require("path");
-const dontenv = require("dotenv");
+const dontenv = require("dotenv"); // 불러들이기
+
 dontenv.config(); // .env 안에 있는 GEMINI_API_KEY
+// process.env.GEMINI_API_KEY
 
 // tailwind, bootstrap -> 의존성. 설치.
 const app = express(); // 객체
@@ -21,7 +23,7 @@ app.post("/gemini", async (req, res) => {
   // 1. fetch.
   const model = "gemini-2.5-flash-lite";
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
-  const apiKey = "AIzaSyDXwgoeXYxomDcp0qPE7wLC_EtIM-PCopg";
+  const apiKey = process.env.GEMINI_API_KEY;
   const headers = {
     "x-goog-api-key": apiKey,
     "Content-Type": "application/json",
